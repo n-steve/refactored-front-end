@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Post from "./Components/Post";
+// import Read from "./Components/Read";
 
 function App() {
+  const [getData, setGetData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:9292/Food")
+      .then((r) => r.json(0))
+      .then((data) => {
+        // setScale(scaleData);
+        setGetData(data);
+      });
+  }, []);
+  console.log(getData);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <header></header>
     </div>
   );
 }
