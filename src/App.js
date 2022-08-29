@@ -1,22 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Box } from "@mui/material";
+import Read from "./Components/Read";
 import Post from "./Components/Post";
-// import Read from "./Components/Read";
 
 function App() {
-  const [getData, setGetData] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:9292/Food")
-      .then((r) => r.json(0))
+      .then((r) => r.json())
       .then((data) => {
-        // setScale(scaleData);
-        setGetData(data);
+        setData(data);
       });
   }, []);
-  console.log(getData);
+
+  const addData = (newData) => {
+    setData([...data, newData]);
+  };
+
+  const deleteData = (removeData) => {
+    const updateData = data.filter((i) => i.id !== removeData.id);
+    setData(updateData);
+  };
+
   return (
     <div>
-      <header></header>
+      <Box
+        sx={{
+          color: "text.primary",
+          textAlign: "center",
+          fontWeight: "medium",
+          boxShadow: 1,
+          margin: 10,
+        }}
+      >
+        <header>Personal Food List</header>
+        <Post addData={addData} />
+
+        <Read data={data} deleteData={deleteData} setData={setData} />
+      </Box>
     </div>
   );
 }
