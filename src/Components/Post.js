@@ -54,14 +54,15 @@ function Post({ addData }) {
         value={rname}
         onChange={(e) => setRName(e.target.value)}
       />
-
-      <TextField
-        type="text"
-        size="extra large"
-        helperText="Add Review"
-        value={review}
-        onChange={(e) => setReview(e.target.value)}
-      />
+      <div>
+        <TextField
+          type="comment"
+          size="large"
+          helperText="Add Review"
+          value={review}
+          onChange={(e) => setReview(e.target.value)}
+        />
+      </div>
       <div>
         <Rating
           size="medium"
@@ -69,10 +70,10 @@ function Post({ addData }) {
           value={scale.to_int}
           onChange={(e) => setScale(e.target.value)}
         />
-        <div>
-          {" "}
-          <Button onClick={handleSubmit}>Submit</Button>
-        </div>
+      </div>
+      <div>
+        {" "}
+        <Button onClick={handleSubmit}>Submit</Button>
       </div>
     </form>
   );

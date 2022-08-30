@@ -9,46 +9,38 @@ import {
 } from "@mui/material";
 import SelectRandom from "./SelectRandom";
 
-function Read({ data, deleteData, setData }) {
-  const [select, isSelect] = useState(false);
+function Read({ data, deleteData, updateData }) {
+  // const [select, isSelect] = useState(false);
 
-  const updateData = (updatedData) => {
-    const update = data.map((i) => (i.id === updatedData ? select : i));
-    isSelect(update);
-  };
+  // const updateData = (updatedData) => {
+  //   const update = data.map((i) => (i.id === updatedData ? select : i));
+  //   isSelect(update);
+  // };
 
   return (
-    <>
-      <form>
-        <Table>
-          <TableHead>
-            <TableRow className="read" hover>
-              <TableCell>Food</TableCell>
-              <TableCell>Location</TableCell>
-              <TableCell>Review</TableCell>
-              <TableCell>Scale</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((i) => (
-              <>
-                {select === i.id ? (
-                  <SelectRandom />
-                ) : (
-                  <TableData
-                    key={i.id}
-                    apiData={i}
-                    id={i.id}
-                    deleteData={deleteData}
-                    updateData={updateData}
-                  />
-                )}
-              </>
-            ))}
-          </TableBody>
-        </Table>
-      </form>
-    </>
+    <form>
+      <Table>
+        <TableHead>
+          <TableRow className="read" hover>
+            <TableCell>Food</TableCell>
+            <TableCell>Location</TableCell>
+            <TableCell>Review</TableCell>
+            <TableCell>Scale</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((i) => (
+            <TableData
+              key={i.id}
+              apiData={i}
+              id={i.id}
+              deleteData={deleteData}
+              updateData={updateData}
+            />
+          ))}
+        </TableBody>
+      </Table>
+    </form>
   );
 }
 

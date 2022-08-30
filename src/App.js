@@ -23,6 +23,10 @@ function App() {
     setData(updateData);
   };
 
+  const updateData = (updatedData) => {
+    const update = data.map((i) => (i.id === updatedData.id ? updatedData : i));
+    setData(update);
+  };
   return (
     <div>
       <Box
@@ -37,7 +41,12 @@ function App() {
         <header>Personal Food List</header>
         <Post addData={addData} />
 
-        <Read data={data} deleteData={deleteData} setData={setData} />
+        <Read
+          data={data}
+          deleteData={deleteData}
+          setData={setData}
+          updateData={updateData}
+        />
       </Box>
     </div>
   );
